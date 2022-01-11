@@ -1,0 +1,17 @@
+{
+  "name": "time_to_answer",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "4.6.0",
+    "bootstrap-growl-ifightcrime": "^1.1.0",
+    "chart.js": "2.9.4",
+    "font-awesome": "^4.6.3",
+    "jquery": "3.6.0",
+    "jquery.easing": "1.4.1",
+    "popper.js": "1.16.1"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Allysonfreitas210695 <allysonfr83@gmail.com>",
+  "license": "MIT"
+}
