@@ -29,6 +29,14 @@
                          {:prompt => 'Please select the author of this post'}, {class: 'form-control'})%>
                       </div>
 
+                      <div id="answers">
+                        <%= form.fields_for :answers do |answer| %>
+                          <%= render partial: 'answer_fields', locals: { f: answer } %>
+                        <% end %>
+
+                        <%= link_to_add_association '[Adicionar resposta]', form, :answers %>
+                      </div>
+
                       
                   <%= form.submit t('buttons.save'),  class:"btn btn-success" %>
                 <% end %>   
