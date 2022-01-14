@@ -80,25 +80,10 @@
       </nav>
 
       <main class="container">
-        <h1>Site::Welcome#index</h1>
-        <p>Find me in app/views/site/welcome/index.html.erb</p>
-
-        <% if user_signed_in? %>
-          <p>User Está logado!</p>
-          <%= current_user.email %>
-          <br />
+        <% unless params[:term] %>
+          <h3>Últimas perguntas cadastradas....</h3>
         <% else %>
-          <p>User Está Não logado!</p>
-          <br />
-        <% end %>
-
-        <% if admin_signed_in? %>
-          <p>Admin Está logado!</p>
-          <%= current_admin.email %>
-          <br />
-        <% else %>
-          <p>Admin Está Não logado!</p>
-          <br />
+          <h3>Resultado do termo "<%= params[:term] %>"....</h3>
         <% end %>
       </main>
 
