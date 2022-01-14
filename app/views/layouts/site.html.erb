@@ -26,6 +26,16 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           
+          
+          <%= form_with(url:site_search_path, local: true, method: :get, class:'d-flex') do |form| %>
+            <%# <div class="form-group"> %>
+            <%= form.text_field :term, class:"form-control me-2", aria_label:"Search"%>
+            <%# </div> %>
+            
+            <button type="submit" class="btn btn-primary"> Pesquisar </button>
+          <% end %>
+          
+
           <div class="collapse navbar-collapse" id="navbarCollapse">
            <% unless user_signed_in? %>
               <ul class="navbar-nav me-auto mb-2 mb-md-0">
@@ -91,7 +101,7 @@
           <br />
         <% end %>
       </main>
-      
+
       <%= yield %>
 
           <%= javascript_include_tag 'application' %>
