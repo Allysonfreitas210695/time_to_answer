@@ -1,22 +1,74 @@
-<h1> Layoud site </h1>
-
-
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+
     <title>TimeToAnswer</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application' %>
+    <%= stylesheet_link_tag    'site' %>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/navbar-static/">
   </head>
 
   <body>
-    <h1> LAYOUD ADMINS_USER </h1>
-    <%= yield %>
+    
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Top navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+           <% unless user_signed_in? %>
+              <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                
+                  <li class="nav-item">
+                  <%= link_to 'Entrar', new_user_session_path, class:"nav-link "%>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to 'Cadastrar-se', new_user_registration_path, class:"nav-link "%>
+                  </li> 
+              </ul>
+            <% else %>
+            <ul class="navbar-nav me-auto mb-2 mb-md-0"></ul>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle bg-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= current_user.email %>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li>
+                  <%= link_to destroy_user_session_path,method: :delete, class:"dropdown-item", data_toggle:"modal",  data_target:"#logoutModal" do %>
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                         Sair
+                  <% end %>
+                  </li>
+                </ul>
+              </div>
+            <% end%>
+          </div>
+        </div>
+      </nav>
+
+      <main class="container">
+        <div class="bg-light p-5 rounded">
+          <h1>Navbar example</h1>
+          <p class="lead"><%= yield %> </p>
+          <a class="btn btn-lg btn-primary" href="../components/navbar/" role="button">View navbar docs &raquo;</a>
+        </div>
+      </main>
+          <%= javascript_include_tag 'application' %>
+          <%= javascript_include_tag 'site' %>
   </body>
 </html>
+
 
 
 
