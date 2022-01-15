@@ -1,19 +1,37 @@
+  <main class="container">
+        <% unless params[:term] %>
+          <h3>Últimas perguntas cadastradas....</h3>
+        <% else %>
+          <h3>Resultado do termo "<%= params[:term] %>"....</h3>
+        <% end %>
+  </main>
+
 <% @questions.each do |question| %>
-    <div class="panel panel-default px-5 py-5 mx-5"> 
-      <div class="panel-heading"> 
-        <h3 class="panel-title"> <%= question.description %> </h3> 
-      </div>
-      <div class="panel-body"> 
-        <ul>
-            <% question.answers.each do |answer| %>
-                <li>
-                    <%= answer.description %>
-                </li>
-            <% end %>
-        </ul>
-      </div>
-      
-    </div>
+    <%= form_with(url: site_answer_path, local: true) do |form| %>
+        <div class="panel panel-default px-5 py-5 mx-5"> 
+          <div class="panel-heading"> 
+            <h3 class="panel-title"> <%= question.description %> </h3> 
+          </div>
+          <div class="panel-body"> 
+            <ul>
+              <% question.answers.each do |answer| %>
+                  <div class="radio">
+                    <li style="list-style: none; padding: 0.4rem;">
+                        <label >
+                          <%= radio_button_tag 'answer', answer.id%> 
+                          <%= answer.description %>
+                        </label>
+                    </li>
+                  </div>
+              <% end %>
+               <li style="list-style: none; margin-top: 8px;"> 
+                  <%= form.submit 'Responder', class:"btn btn-success" %>
+               </li>
+            </ul>
+          </div>
+          
+        </div>
+    <% end %>
 <% end %>
 
     <div class="navbar navbar-expand-lg navbar-light bg-light px-5 py-5 mx-5">

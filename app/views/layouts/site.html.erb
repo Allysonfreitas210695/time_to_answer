@@ -79,13 +79,7 @@
         </div>
       </nav>
 
-      <main class="container">
-        <% unless params[:term] %>
-          <h3>Últimas perguntas cadastradas....</h3>
-        <% else %>
-          <h3>Resultado do termo "<%= params[:term] %>"....</h3>
-        <% end %>
-      </main>
+    
 
       <%= yield %>
 
