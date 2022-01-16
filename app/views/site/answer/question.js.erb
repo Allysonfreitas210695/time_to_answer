@@ -1,1 +1,29 @@
-alert('<%= @answer.correct %>')
+var button = document.getElementById("submit_<%= @answer.question_id %>")
+
+button.classList.remove("btn-secondary")
+  
+ var success = () => {
+  button.classList.remove("btn-danger")
+  button.classList.add("btn-success")
+  $.bootstrapGrowl('Você acertou parabéns \\o/', {
+    type: 'success', // (null, 'info', 'danger', 'success')
+    align: 'right', // ('left', 'right', or 'center')
+    allow_dismiss: true, // If true then will display a cross to close the popup.
+    stackup_spacing: 10 // spacing between consecutively stacked growls.
+  });
+ }
+
+ var error = () => {
+  button.classList.remove("btn-success")
+  button.classList.add("btn-danger")
+  $.bootstrapGrowl('Infelizmente você errou!!! :(', {
+    type: 'danger', // (null, 'info', 'danger', 'success')
+    align: 'right', // ('left', 'right', or 'center')
+    allow_dismiss: true, // If true then will display a cross to close the popup.
+    stackup_spacing: 10 // spacing between consecutively stacked growls.
+  });
+ }
+
+ <%= @answer.correct %> ? success() : error()
+
+ 
