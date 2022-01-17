@@ -1,16 +1,17 @@
   <main class="container">
-        <% unless params[:term] %>
-          <h3>Últimas perguntas cadastradas....</h3>
-        <% else %>
-          <h3>Resultado do termo "<%= params[:term] %>"....</h3>
-        <% end %>
+       <h3> <%= msg_container %> </h3>
   </main>
 
 <% @questions.each do |question| %>
     <%= form_with(url: site_answer_path) do |form| %>
         <div class="panel panel-default px-5 py-5 mx-5"> 
           <div class="panel-heading"> 
-            <h3 class="panel-title"> <%= question.description %> </h3> 
+            <h3 class="panel-title">
+             <span class="badge badge-primary" style="background: blue;">
+              <%= link_to question.subject.description, site_search_subject_path(question.subject_id,question.subject.description), style:'text-decoration: none; color: #fff; font-weight: bold;'%>
+             </span>
+             <%= question.description %> 
+            </h3> 
           </div>
           <div class="panel-body"> 
             <ul>
