@@ -1,5 +1,5 @@
 <div class="page-heading">
-  <h1 class="page-title text-center"> Dados do Perfil </h1>
+  <h1 class="page-title text-center"> Dados do Perfil</h1>
 </div>
 
 <div class="container ">
@@ -9,23 +9,42 @@
         <div class="text-center">
           <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
         </div>
-          <form class="user">
+        <%= form_with(url: users_backoffice_profile_path,model: @user, local: true, class:"user") do |form| %>
+            <% if @user.errors.any? %>
+                <div class="alert alert-danger alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <ul>
+                      <% @user.errors.full_messages.each do |message| %>
+                        <li> <%= message %> </li>
+                      <% end %>
+                    </ul>
+                </div>
+              <% end %>
+
              <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Nome">
+                   <%= form.text_field :first_name, class:"form-control form-control-user", id:"exampleFirstName", placeholder: 'Nome'%>
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="SobreNome">
+                   <%= form.text_field :last_name, class:"form-control form-control-user", id:"exampleLastName", placeholder: 'SobreNome'%>
                 </div>
               </div>
-              <div class="form-group">
-                <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email">
+               <div class="form-group">
+                <%= form.text_field :email, class:"form-control form-control-user", id:"exampleInputEmail", readonly: true %>
               </div>
               <hr>
-              <a href="index.html" class="btn btn-google btn-user btn-block">
-                 Salvar
-              </a>
-          </form>
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <%= form.text_field :password, class:"form-control form-control-user", id:"exampleInputPassword", placeholder:"Password"%>
+                </div>
+                <div class="col-sm-6">
+                  <%= form.text_field :password_confirmation, class:"form-control form-control-user", id:"exampleRepeatPassword", placeholder:"Repeat Password"%>
+                </div>
+              </div>
+              <hr>
+              <%= form.submit t('buttons.save'),  class:"btn btn-success btn-block"%>
+              
+          <% end %>
           <hr>
       </div>
     </div>
