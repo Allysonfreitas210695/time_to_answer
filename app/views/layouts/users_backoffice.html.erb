@@ -83,7 +83,7 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small ">
                                 <%= current_user.first_name %>
                                 </span>
-                                <%= image_tag(avatar_url, size: "50x50", alt: "Edit Entry") %>
+                                <%= image_tag(avatar_url, size: "50x50", alt: "Edit Entry", id:"imgAvatarSm") %>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -127,7 +127,7 @@
     <div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
-        <%= form_with(url: users_backoffice_profile_path, model: current_user, class:"form-horizontal form-label-left",local: true) do |form| %>
+        <%= form_with(url: users_backoffice_profile_path, model: current_user, class:"form-horizontal form-label-left") do |form| %>
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Avatar</h4>

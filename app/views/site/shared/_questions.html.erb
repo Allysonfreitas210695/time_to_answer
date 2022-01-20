@@ -4,40 +4,46 @@
 
 <% @questions.each do |question| %>
     <%= form_with(url: site_answer_path) do |form| %>
-        <div class="panel panel-default px-5 py-5 mx-5"> 
-          <div class="panel-heading"> 
+        <div class="panel panel-default px-5 py-5 mx-5">
+          <div class="panel-heading">
             <h3 class="panel-title">
              <span class="badge badge-primary" style="background: blue;">
               <%= link_to "#{question.subject.description} (#{question.subject.questions_count})", site_search_subject_path(question.subject_id,question.subject.description), style:'text-decoration: none; color: #fff; font-weight: bold;'%>
-              
+
              </span>
-             <%= question.description %> 
-            </h3> 
+             <%= question.description %>
+            </h3>
           </div>
-          <div class="panel-body"> 
+          <div class="panel-body">
             <ul>
               <% question.answers.each do |answer| %>
                   <div class="radio">
                     <li style="list-style: none; padding: 0.4rem;">
                         <label >
-                          <%= radio_button_tag 'answer_id', answer.id%> 
+                          <%= radio_button_tag 'answer_id', answer.id%>
                           <%= answer.description %>
                         </label>
                     </li>
                   </div>
               <% end %>
-               <li style="list-style: none; margin-top: 8px;"> 
+               <li style="list-style: none; margin-top: 8px;">
                   <%= form.submit 'Responder', class:"btn btn-secondary", id:"submit_#{question.id}" %>
                </li>
             </ul>
           </div>
-          
+
         </div>
     <% end %>
 <% end %>
 
+<% if user_signed_in? %>
     <div class="navbar navbar-expand-lg navbar-light bg-light px-5 py-5 mx-5">
       <div class="container-fluid">
         <%= paginate @questions, style:'text-decoration: none' %>
       </div>
     </div>
+<% else %>
+  <div class="alert alert-danger" role="alert">
+    A simple danger alert—check it out!
+  </div>
+<% end %>
