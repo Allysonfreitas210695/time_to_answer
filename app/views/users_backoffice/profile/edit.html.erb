@@ -25,25 +25,53 @@
                 <div class="col-sm-6 mb-3 mb-sm-0">
                    <%= form.text_field :first_name, class:"form-control form-control-user", id:"exampleFirstName", placeholder: 'Nome'%>
                 </div>
+
                 <div class="col-sm-6">
                    <%= form.text_field :last_name, class:"form-control form-control-user", id:"exampleLastName", placeholder: 'SobreNome'%>
                 </div>
+
               </div>
                <div class="form-group">
                 <%= form.text_field :email, class:"form-control form-control-user", id:"exampleInputEmail", readonly: true %>
               </div>
               <hr>
+
+              <%= form.fields_for :user_profile do |profile_form|%>
+                <div class="form-group">
+                 <%= profile_form.text_field :address, class:"form-control form-control-user", id:"exampleInputEmail", placeholder:"Anddress" %>
+                </div>
+                <hr>
+
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" value="<%=gender_select(@user.user_profile.gender)%>" readonly>
+                </div>
+                <hr>
+
+                <div class="form-group">
+                 <%= profile_form.label :gender, id:"exampleInputEmail1" %>
+                 <%= profile_form.select(:gender, options_for_select([['Feminino', 'F'], ['Masculino', 'M']], @user.user_profile.gender), class:"custom-select custom-select-lg") %>
+                </div>
+                <hr>
+
+                <div class="form-group">
+                 <%= profile_form.text_field :birthdate, class:"form-control form-control-user", id:"exampleInputEmail", placeholder:"Birthdate" %>
+                </div>
+                <hr>
+                <% end %>
+
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <%= form.text_field :password, class:"form-control form-control-user", id:"exampleInputPassword", placeholder:"Password"%>
                 </div>
+
                 <div class="col-sm-6">
                   <%= form.text_field :password_confirmation, class:"form-control form-control-user", id:"exampleRepeatPassword", placeholder:"Repeat Password"%>
                 </div>
+
               </div>
               <hr>
               <%= form.submit t('buttons.save'),  class:"btn btn-success btn-block"%>
-              
+
           <% end %>
           <hr>
       </div>
