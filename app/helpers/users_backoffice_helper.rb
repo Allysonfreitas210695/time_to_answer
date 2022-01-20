@@ -1,4 +1,9 @@
 module UsersBackofficeHelper
+  def avatar_url
+    avatar = current_user.user_profile.avatar
+    avatar.attached? ? avatar : 'profile.svg'
+  end
+
   def gender_select(msg_user)
     msg_format(msg_user)
   end

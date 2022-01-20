@@ -28,8 +28,7 @@
             <!-- Sidebar - Brand -->
             <div class="profile clearfix px-3">
               <div class="profile_pic">
-                <%= link_to image_tag('profile.svg', alt:'...',size: '100x100', class:"img-circle profile_img px-3 py-2"),'#',"data-toggle":"modal", "data-target":"#staticBackdropAvatar" %>
-
+                <%= link_to image_tag(avatar_url,size:"100x100", alt:"...", class:"img-circle profile_img", id:"imgAvatarMd"), '#', "data-toggle":"modal", "data-target":"#avatarModal" %>
                 <span class="text-light font-weight-bold"><%=current_user.first_name%></span>
               </div>
             </div>
@@ -81,10 +80,10 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small ">
                                 <%= current_user.first_name %>
                                 </span>
-                                <%= image_tag("profile.svg", size: "50x50", alt: "Edit Entry") %>
+                                <%= image_tag(avatar_url, size: "50x50", alt: "Edit Entry") %>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -125,26 +124,31 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdropAvatar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
+    <div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
+        <%= form_with(url: users_backoffice_profile_path, model: current_user, class:"form-horizontal form-label-left",local: true) do |form| %>
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Avatar</h4>
           </div>
           <div class="modal-body">
-            ...
+            <%= form.fields_for :user_profile do |profile_form|  %>
+              <div class="form-group">
+                <%= profile_form.label :avatar %>
+                <%= image_tag(avatar_url,size:"100x100", alt:"...", class:"img-circle profile_img", id:"imgAvatarLg") %>
+                <%= profile_form.file_field :avatar %>
+              </div>
+            <% end %>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
+            <%= form.submit "Salvar", class:"btn btn-primary" %>
           </div>
+        <% end %>
         </div>
       </div>
     </div>
-     <!-- /Modal-->
+    <!-- /Modal -->
 
     <%= javascript_include_tag 'application'%>
     <%= javascript_include_tag 'users_backoffice'%>
