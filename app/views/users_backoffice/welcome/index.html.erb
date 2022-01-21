@@ -1,7 +1,50 @@
-<h1>UsersBackoffice::Welcome#index</h1>
-<p>Find me in app/views/users_backoffice/welcome/index.html.erb</p>
+<div class="mx-4 my-5">
+  <h1>Seja bem-vindo, <strong> <i><%= current_user.full_name %></i></strong></h1>
+</div>
 
-<% if user_signed_in? %>
-  <%= link_to 'Efetuar logoff…[Admin]', destroy_user_session_path, method: :delete %>
-<% end %>
-
+<div class="container px-5 py-2 text-center" style="width: 100%; height:100vh;">
+  <div class="row px-5 mx-auto">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Acertos</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%=  @user_statistic.right_questions %></div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">Parabéns, continue respondendo as questões.</div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Erradas</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @user_statistic.wrong_questions %></div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">Verifique as questões que errou para praticar mais.</div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Total de questoes</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @user_statistic.total_questions %></div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">Quantidade total de questões respondidas.</div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
