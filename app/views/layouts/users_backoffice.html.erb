@@ -27,7 +27,7 @@
             <div class="clearfix"></div>
             <!-- Sidebar - Brand -->
             <div class="profile clearfix px-3">
-              <div class="profile_pic">
+              <div class="profile_pic py-3">
                 <%= link_to image_tag(avatar_url,size:"100x100", alt:"...", class:"img-circle profile_img", id:"imgAvatarMd"), '#', "data-toggle":"modal", "data-target":"#avatarModal" %>
                 <span class="text-light font-weight-bold"><%=current_user.first_name%></span>
               </div>
@@ -36,12 +36,23 @@
 
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            <hr class="sidebar-divider my-4">
 
             <li class="nav-item active">
                 <%= link_to users_backoffice_welcome_index_path, class:'nav-link' do %>
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Inicio</span>
+                <% end %>
+            </li>
+
+             <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <%= link_to  site_welcome_index_path, class:'nav-link' do %>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Questoes</span>
                 <% end %>
             </li>
 
