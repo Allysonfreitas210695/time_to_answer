@@ -9,4 +9,9 @@ class AdminStatistic < ApplicationRecord
     admin_statistics.value += 1
     admin_statistics.save
   end
+
+  scope :set_total_questions, -> { find_by_event(EVENTS[:total_questions]).value
+  }
+
+  scope :set_total_users, -> { find_by_event(EVENTS[:total_users]).value }
 end
