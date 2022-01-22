@@ -1,6 +1,37 @@
-<h1>AdminsBackoffice::Welcome#index</h1>
-<p>Find me in app/views/admins_backoffice/welcome/index.html.erb</p>
+<div class="mx-4 my-5">
+  <h1>Seja bem-vindo!</h1>
+</div>
 
-<% if admin_signed_in? %>
-  <%= link_to 'Efetuar logoff…[Admin]', destroy_admin_session_path, method: :delete %>
-<% end %>
+<div class="container px-5 py-2 text-center" style="width: 100%; height:100vh;">
+  <div class="row px-5 mx-auto">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Usuários</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @total_users %></div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">Esses sao os Usúarios até o momento cadastrado!</div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Questoes</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @total_questions %></div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">Esses sao de Questoes até o momento cadastrado!</div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
