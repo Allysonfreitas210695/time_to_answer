@@ -1,16 +1,33 @@
-<h2>Forgot your password?</h2>
+<!-- Outer Row -->
+<div class="row justify-content-center">
+ <div class="col-xl-10 col-lg-12 col-md-9">
+     <div class="card o-hidden border-0 shadow-lg my-5">
+         <div class="card-body p-0">
+                       <!-- Nested Row within Card Body -->
+             <div class="row">
+                 <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                 <div class="col-lg-6">
+                   <div class="p-5">
+                       <div class="text-center">
+                           <h1 class="h4 text-gray-900 mb-4">Forgot your password?</h1>
+                       </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+                       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, class:"user") do |f| %>
+                            <%# render "users/shared/error_messages", resource: resource %>
+                            <div class="form-group">
+                              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-user', placeholder:"Digite seu email.", id: 'email', aria_describedby:"emailHelp" %>
+                            </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                         <%= f.submit "Recuperar a senha!", class:"btn btn-primary btn-user btn-block"%>
+
+                     <% end %>
+
+                     <%= render "users/shared/links" %>
+
+                 </div>
+             </div>
+          </div>
+       </div>
+     </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

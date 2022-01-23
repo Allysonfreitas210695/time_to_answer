@@ -1,25 +1,22 @@
-<h2>Change your password</h2>
+<div class="container py-5 ">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, class:"user") do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+    <div class="form-group">
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> minino de caractere)</em><br />
+      <% end %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class:"form-control form-control-user", id:"exampleInputPassword",placeholder:"digite a nova senha" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
+    <div class="form-group">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control form-control-user", id:"exampleInputPassword", placeholder:"confirme sua senha por favor" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+      <%= f.submit "Change my password", class:"btn btn-primary btn-user btn-block" %>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
+  <% end %>
 
-<%= render "users/shared/links" %>
+  <%= render "users/shared/links" %>
+</div>
