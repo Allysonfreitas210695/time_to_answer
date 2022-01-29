@@ -15,6 +15,8 @@
                 <th><%= translate_attribute(@subjects, :description) %></th>
                 <th>
                   <%= link_to 'Novo', new_admins_backoffice_subject_path, class:"btn btn-success"%>
+
+                  <%= link_to 'PDF', admins_backoffice_subjects_path(format: :pdf), class:"btn btn-danger" %>
                 </th>
             </tr>
         </thead>
@@ -25,7 +27,7 @@
                 <td><%= subject.description %></td>
                 <td>
                   <%= link_to 'Editar', edit_admins_backoffice_subject_path(subject), class:"btn btn-warning "%>
-                  <%= link_to 'Excluir', admins_backoffice_subject_path(subject),method: :delete, class:"btn btn-danger ", 
+                  <%= link_to 'Excluir', admins_backoffice_subject_path(subject),method: :delete, class:"btn btn-danger ",
                   data:{confirm: t('message.confirm_with', item: subject.description.truncate(20))} %>
                 </td>
             </tr>
