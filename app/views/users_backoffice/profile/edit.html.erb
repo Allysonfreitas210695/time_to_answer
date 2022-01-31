@@ -1,13 +1,11 @@
-<div class="page-heading">
-  <h1 class="page-title text-center"> Dados do Perfil</h1>
-</div>
+
 
 <div class="container ">
   <div class="row d-flex justify-content-center sm">
     <div class="col-lg-7">
       <div class="p-5">
         <div class="text-center">
-          <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+          <h1 class="h4 text-gray-900 mb-4"> Dados do Perfil</h1>
         </div>
         <%= form_with(url: users_backoffice_profile_path,model: @user, local: true, class:"user") do |form| %>
             <% if @user.errors.any? %>
@@ -36,27 +34,45 @@
               </div>
               <hr>
 
-              <%= form.fields_for :user_profile do |profile_form|%>
-                <div class="form-group">
-                 <%= profile_form.text_field :address, class:"form-control form-control-user", id:"exampleInputEmail", placeholder:"Anddress" %>
-                </div>
-                <hr>
+                <%= form.fields_for :user_profile do |profile_form|%>
+                  <div class="form-group">
+                   <div class="input-group">
+                    <%= profile_form.text_field :zip_code, class:"form-control", placeholder:"CEP", id:"user_profile_attributes_zip_code" %>
+                     <span class="input-group-btn">
+                       <%= link_to "Buscar", users_backoffice_zip_code_path, remote:true, class:"btn btn-primary" %>
+                     </span>
+                  </div>
+                  <hr>
 
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-user" value="<%=gender_select(@user.user_profile.gender)%>" readonly>
-                </div>
-                <hr>
+                  <script>
+                    let zip_code_input = document.getElementById("user_user_profile_attributes_zip_code");
+                    var zip_code_link = document.getElementById("zip-code-link");
 
-                <div class="form-group">
-                 <%= profile_form.label :gender, id:"exampleInputEmail1" %>
-                 <%= profile_form.select(:gender, options_for_select([['Feminino', 'F'], ['Masculino', 'M']], @user.user_profile.gender), class:"custom-select custom-select-lg") %>
-                </div>
-                <hr>
+                    zip_code_input.addEventListener("change", function(){
+                      zip_code_link.href = '<%= users_backoffice_zip_code_path %>/?zip_code='+zip_code_input.value;
+                    });
+                  </script>
 
-                <div class="form-group">
-                 <%= profile_form.text_field :birthdate, class:"form-control  datepicker", id:"exampleInputEmail ", placeholder:"Birthdate" %>
-                </div>
-                <hr>
+                  <div class="form-group">
+                   <%= profile_form.text_field :address, class:"form-control form-control-user", placeholder:"Anddress" %>
+                  </div>
+                  <hr>
+
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" value="<%=gender_select(@user.user_profile.gender)%>" readonly>
+                  </div>
+                  <hr>
+
+                  <div class="form-group">
+                   <%= profile_form.label :gender, id:"exampleInputEmail1" %>
+                   <%= profile_form.select(:gender, options_for_select([['Feminino', 'F'], ['Masculino', 'M']], @user.user_profile.gender), class:"custom-select custom-select-lg") %>
+                  </div>
+                  <hr>
+
+                  <div class="form-group">
+                   <%= profile_form.text_field :birthdate, class:"form-control  datepicker", id:"exampleInputEmail ", placeholder:"Birthdate" %>
+                  </div>
+                  <hr>
                 <% end %>
 
               <div class="form-group row">
