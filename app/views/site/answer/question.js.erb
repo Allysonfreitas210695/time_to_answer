@@ -1,7 +1,7 @@
-var button = document.getElementById("submit_<%= @answer.question_id %>")
+var button = document.getElementById("submit_<%= @question_id %>")
 
 button.classList.remove("btn-secondary")
-  
+
  var success = () => {
   button.classList.remove("btn-danger")
   button.classList.add("btn-success")
@@ -24,6 +24,4 @@ button.classList.remove("btn-secondary")
   });
  }
 
- <%= @answer.correct %> ? success() : error()
-
- 
+ <%= @correct %> ? success() : error()

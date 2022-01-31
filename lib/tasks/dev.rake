@@ -1,5 +1,5 @@
 namespace :dev do
-  
+
   DEFAULT_PASSWORD = 123456
   DEFAULT_FILES_PATH = File.join(Rails.root, 'lib', 'tmp')
 
@@ -53,7 +53,7 @@ namespace :dev do
       end
     end
   end
-  
+
   desc "Adiciona o usuário padrão"
   task add_default_user: :environment do
     User.create!(
@@ -69,7 +69,7 @@ namespace :dev do
     file_path = File.join(DEFAULT_FILES_PATH, file_name)
 
     puts file_path
-    
+
     File.open(file_path, 'r').each do |line|
       Subject.create!(description: line.strip)
     end
@@ -78,15 +78,24 @@ namespace :dev do
 
   desc "Resta o contato dos assuntos"
   task reset_subject_counter: :environment do
-    show_spinner('Atualizando o total de assuntos....') do 
+    show_spinner('Atualizando o total de assuntos....') do
       Subject.find_each do |subject|
         Subject.reset_counters(subject.id, :questions)
       end
     end
   end
 
+  desc "Adiciona todas as respostas no Redis"
+  task add_answers_to_redis: :environment do
+    show_spinner('Adiciona todas as respostas no Redis') do
+      Answer.find_each do |answer|
+        Rails.cache.write(answer.id, "#{answer.question_id}@@#{answer.correct}")
+      end
+    end
+  end
+
   private
-  
+
   def create_question_params(subject = Subject.all.sample)
     { question: {
       description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
@@ -104,7 +113,7 @@ namespace :dev do
     rand(1..4).times do |j|
       answers_array.push(
         create_answer_params
-      ) 
+      )
     end
   end
 
