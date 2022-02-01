@@ -23,11 +23,11 @@
             <% @questions.each do |question| %>
             <tr>
                 <td><%= question.id %></td>
-                <td><%= question.description.truncate(50) %></td>
+                <td><%= sanitize question.description.truncate(50) %></td>
                 <td><%= question.subject.description.truncate(30) %></td>
                 <td>
                   <%= link_to 'Editar', edit_admins_backoffice_question_path(question), class:"btn btn-warning "%>
-                  <%= link_to 'Excluir', admins_backoffice_question_path(question),method: :delete, class:"btn btn-danger ", 
+                  <%= link_to 'Excluir', admins_backoffice_question_path(question),method: :delete, class:"btn btn-danger ",
                   data: {confirm: t('message.confirm_with', item: question.description.truncate(20))} %>
                 </td>
             </tr>

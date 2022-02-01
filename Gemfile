@@ -44,10 +44,17 @@ gem 'awesome_print', '~> 1.9', '>= 1.9.2'
 gem 'kaminari'
 gem 'kaminari-i18n'
 gem "cocoon"
+
+# trabalhar com pdf
 gem 'prawn-rails'
+
+# api com json
 gem 'json'
+
+# cache dos dados
 gem 'redis'
 gem 'hiredis'
+gem 'trix'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

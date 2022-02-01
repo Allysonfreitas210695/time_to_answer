@@ -11,7 +11,7 @@
               <%= link_to "#{question.subject.description} (#{question.subject.questions_count})", site_search_subject_path(question.subject_id,question.subject.description), style:'text-decoration: none; color: #fff; font-weight: bold;'%>
 
              </span>
-             <%= question.description %>
+             <%= sanitize question.description %>
             </h3>
           </div>
           <div class="panel-body">
